@@ -4,6 +4,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
 public class LocalServerExample {
     public static void main(String[] args) {
         try {
@@ -18,9 +19,14 @@ public class LocalServerExample {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Client connected: " + clientSocket.getInetAddress().getHostAddress());
 
+                //sleep for 20 s for fun
+                for(long i =1; i<1000000000; i++) for(long j =1; j<100; j++);
+
+                System.out.println("Wokeup from sleep");
+
                 // Handle the client connection in a separate thread
-                Thread clientThread = new Thread(() -> handleClient(clientSocket));
-                clientThread.start();
+                handleClient(clientSocket);
+               // clientThread.start();
             }
         } catch (IOException e) {
             e.printStackTrace();
